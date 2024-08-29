@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "5433:5432"
+  be:
+    build:
+      context: ./be
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+  fe:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+  ngrok:
+    image: ngrok/ngrok:latest
+    command:
+      - "http"
+      - "http://be:3000"
+      - "--domain=${NGROK_DOMAIN}"
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    ports:
+      - "4040:4040"
+    depends_on:
+      - be
