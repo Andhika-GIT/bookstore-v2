@@ -25,6 +25,7 @@ async function bootstrap() {
       'http://localhost:5000',
       'http://example.com',
       'http://192.168.1.3',
+      'http://fe:5000',
       'http://103.174.115.101:5000'
     ],
     credentials: true,
