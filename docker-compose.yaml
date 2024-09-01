@@ -24,10 +24,13 @@ services:
     build:
       context: ./fe
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SERVER_BASE_URL_CLIENT: ${NEXT_PUBLIC_SERVER_BASE_URL_CLIENT}
     env_file:
       - .env
     ports:
       - "5000:5000"
+
   ngrok:
     image: ngrok/ngrok:latest
     command:
