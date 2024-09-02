@@ -13,8 +13,6 @@ type FirstPanelSelectionProps = {
 };
 
 const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
-  reviewCount,
-  orderCount,
   username,
   fullName,
   className = "",
@@ -39,21 +37,6 @@ const FirstPanelSection: React.FC<FirstPanelSelectionProps> = ({
           <Text type="h6" className="font-medium text-zinc-500">
             {fullName}
           </Text>
-        </div>
-      </div>
-
-      <div className="flex space-x-5 items-center">
-        <div className="space-y-2">
-          <Text type="h6" className="font-extrabold">
-            {reviewCount}
-          </Text>
-          <Text type="span">Reviews</Text>
-        </div>
-        <div className="space-y-2">
-          <Text type="h6" className="font-extrabold">
-            {orderCount}
-          </Text>
-          <Text type="span">Order</Text>
         </div>
       </div>
 
